@@ -660,7 +660,7 @@ const App = () => {
         </ScrollView>
       </SafeAreaView>
     );
-  } else  {
+  } else {
     return (
       <View>
         <Text>Carregando...</Text>
