@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React, {useEffect, useState} from 'react';
 
-import {View, Text, Picker, TouchableOpacity, SafeAreaView, ScrollView} from 'react-native';
+import {View, Text, TouchableOpacity, SafeAreaView, ScrollView} from 'react-native';
 
 // import { Container } from './styles';
 
@@ -25,6 +25,53 @@ const PendingTasks = () => {
     getTasks();
 
   }, []);
+
+
+  const completeTask = async task => {
+    try {
+      let url = 'http://192.168.1.7:8000/tasks/complete';
+      let res = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(task),
+        headers: {'Content-Type': 'application/json'},
+      })
+        .then(response => response.json())
+        .then(responseJSON => responseJSON);
+      if (res.status) {
+        alert('Task ' + task.name + ' completed!');
+        refreshData();
+      } else {
+        alert('Error: task not completed. ' + res.status);
+        refreshData();
+      }
+    } catch (error) {
+      console.log(error);
+      refreshData();
+    }
+  };
+
+  const deleteTask = async task => {
+    try {
+      let url = 'http://192.168.1.7:8000/tasks/delete';
+      let res = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(task),
+        headers: {'Content-Type': 'application/json'},
+      })
+        .then(response => response.json())
+        .then(responseJSON => responseJSON);
+      if (res.status) {
+        alert('Task ' + task.name + ' deleted!');
+        refreshData();
+      } else {
+        alert('Error: task not deleted. ' + res.status);
+        refreshData();
+      }
+    } catch (error) {
+      console.log(error);
+      refreshData();
+    }
+  };
 
   const refreshData = async () => {
     setTasks([]);
