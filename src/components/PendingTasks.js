@@ -4,6 +4,7 @@ import React, {useEffect, useState} from 'react';
 import {View, Text, TouchableOpacity, SafeAreaView, ScrollView} from 'react-native';
 
 // import { Container } from './styles';
+import NavBar from './NavBar';
 
 const PendingTasks = () => {
 
@@ -98,6 +99,7 @@ const PendingTasks = () => {
           width: '100%',
           zIndex: -1,
         }}>
+          <NavBar />
         <ScrollView
           style={{width: '90%'}}
           contentContainerStyle={{alignItems: 'center'}}>
@@ -109,7 +111,7 @@ const PendingTasks = () => {
               borderBottomColor: '#8bffa6',
               borderBottomWidth: 1,
             }}>
-            Completed Tasks
+            Pending Tasks
           </Text>
           <View style={{flexDirection: 'row'}}>
             <TouchableOpacity

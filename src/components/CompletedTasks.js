@@ -4,6 +4,7 @@ import React, {useEffect, useState} from 'react';
 import {View, Text, TouchableOpacity, SafeAreaView, ScrollView} from 'react-native';
 
 // import { Container } from './styles';
+import NavBar from './NavBar';
 
 const CompletedTasks = () => {
 
@@ -98,6 +99,7 @@ const CompletedTasks = () => {
           width: '100%',
           zIndex: -1,
         }}>
+          <NavBar />
         <ScrollView
           style={{width: '90%'}}
           contentContainerStyle={{alignItems: 'center'}}>
